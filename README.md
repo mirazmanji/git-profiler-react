@@ -20,7 +20,8 @@
 * Add loading wheel to display during fetch
 
 Deployed to AWS at http://3.145.22.53:3000/
- 
+Run without hangup setsid nohup npm run start & and update proxy/server variable to ec2 ip
+
 <br/>
 
 ## Available Scripts
