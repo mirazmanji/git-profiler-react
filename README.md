@@ -17,8 +17,9 @@
 ### TO DO: ###
 * Integrate with OS.AI to summarize repo content descriptions (GPT3)
 * Handle token authorization for express server requests
-* Deploy to cloud using AWS
 
+Deployed to AWS at http://3.145.22.53:3000/
+ 
 <br/>
 
 ## Available Scripts

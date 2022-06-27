@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-// const gitURL = 'https://api.github.com/users/'
-const gitURL = 'http://localhost:8081/'
+const server = "http://localhost:8081"
+
+const gitURL = server + "/"
 export const axiosGitUser = axios.create({baseURL: gitURL})
 
-const cacheURL = 'http://localhost:8081/users/'
+const cacheURL = server + "/users/"
 export const axiosCache = axios.create({baseURL: cacheURL})
-
