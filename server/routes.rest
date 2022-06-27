@@ -1,0 +1,27 @@
+GET http://localhost:8081/mirazmanji
+###
+
+GET http://localhost:8081/users/mirazmanji
+###
+
+POST http://localhost:8081/users/
+Content-Type: application/json
+
+{
+    "handle" : "mirazmanji",
+    "avatarURL" : "http://img.url",
+    "stars" : 5
+}
+
+###
+DELETE http://localhost:8081/users/mirazmanji
+
+### 
+PATCH http://localhost:8081/users/mirazmanji
+Content-Type: application/json
+
+{
+    "stars": 20
+}
+
+###
