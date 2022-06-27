@@ -14,6 +14,13 @@
 
 <br/>
 
+### TO DO: ###
+* Integrate with OS.AI to summarize repo content descriptions (GPT3)
+* Handle token authorization for express server requests
+* Deploy to cloud using AWS
+
+<br/>
+
 ## Available Scripts
 
 ### `npm i`
