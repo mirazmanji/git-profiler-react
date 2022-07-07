@@ -1,6 +1,9 @@
 GET http://localhost:8081/mirazmanji
 ###
 
+GET http://localhost:8081/openai/mirazmanji
+###
+
 GET http://localhost:8081/users/mirazmanji
 ###
 

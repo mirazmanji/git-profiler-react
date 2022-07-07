@@ -13,6 +13,7 @@ router.get('/:userName', async (req, res) => {
         return accumulator + item.stargazers_count;
       }, 0);
       res.status(200).json({
+        data: data.data,
         stars: stars,
         avatarURL: data.data[0].owner.avatar_url,
         handle: data.data[0].owner.login,
@@ -22,4 +23,5 @@ router.get('/:userName', async (req, res) => {
       res.status(500).json({message: err.message})
     }   
 })
+
 module.exports = router;

@@ -20,7 +20,7 @@
 * Add loading wheel to display during fetch
 * Configure AWS Load balancer with SSL certificate for HTTPS access
 
-Deployed to AWS at http://3.145.22.53:3000/
+Deployed to AWS at <s>http://3.145.22.53:3000/</s>
 Run without hangup setsid nohup npm run start & and update proxy/server variable to ec2 ip
 
 <br/>

@@ -4,6 +4,7 @@ import Header from "./components/Header.js";
 import Lookup from "./components/Lookup.js";
 import Profile from "./components/Profile";
 import { axiosGitUser, axiosCache } from "./config";
+import Summary from "./components/Summary";
 
 function App() {
   const [userName, setUsername] = useState("");
@@ -98,6 +99,7 @@ function App() {
               stars={userStars}
             />
           ) : null}
+          <Summary summaryText='Hello World'/>
         </div>
         <div className="col-md-4">&nbsp;</div>
       </div>
