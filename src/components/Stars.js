@@ -10,7 +10,7 @@ const Stars = ({numStars}) => {
   return (  
     <>  
     {starArray.map((star) => (
-        <FaStar key={star.index} color="gold"/>
+        <FaStar key={`star_${star.index}`} id={`star_${star.index}`} color="gold" />
     ))}
     </>
   )

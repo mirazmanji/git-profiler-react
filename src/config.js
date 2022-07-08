@@ -7,3 +7,6 @@ export const axiosGitUser = axios.create({baseURL: gitURL})
 
 const cacheURL = server + "/users/"
 export const axiosCache = axios.create({baseURL: cacheURL})
+
+const openAIURL = server + "/openai/"
+export const axiosOpenAI = axios.create({baseURL: openAIURL})

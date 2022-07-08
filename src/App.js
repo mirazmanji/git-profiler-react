@@ -3,14 +3,15 @@ import { useState } from "react";
 import Header from "./components/Header.js";
 import Lookup from "./components/Lookup.js";
 import Profile from "./components/Profile";
-import { axiosGitUser, axiosCache } from "./config";
-import Summary from "./components/Summary";
+import { axiosGitUser, axiosCache, axiosOpenAI } from "./config";
+import Summary from "./components/Summary.js";
 
 function App() {
   const [userName, setUsername] = useState("");
   const [userPhoto, setPhoto] = useState("");
   const [photoTitle, setPhotoTitle] = useState("");
   const [userStars, setStars] = useState(0);
+  const [userRepos, setRepos] = useState([])
 
   const updateUserName = (e) => {
     setUsername(e.target.value.toLowerCase());
@@ -59,14 +60,17 @@ function App() {
 
   const fetchCacheData = async () => {
     try {
-      const data = await axiosCache.get(userName);
+      //const data = await axiosCache.get(userName);
+      const data = await axiosOpenAI.get(userName)
       if (data.status === 200) {
         setStars(data.data.stars);
         setPhoto(data.data.avatarURL);
         setPhotoTitle(data.data.handle);
+        setRepos(data.data.repoReadMes)
         console.log({
           message: "Data retrieved from cache",
-          data: data
+          data: data,
+          repo: userRepos
         });
         return true;
       } else {
@@ -80,7 +84,7 @@ function App() {
       return false;
     }
   };
-
+  const summaryArray = [{'summary': 'Hello'}, {'summary':'World'}]
   return (
     <div className="App">
       <Header />
@@ -99,10 +103,15 @@ function App() {
               stars={userStars}
             />
           ) : null}
-          <Summary summaryText='Hello World'/>
         </div>
         <div className="col-md-4">&nbsp;</div>
       </div>
+      <div className="container">
+        <div className="row align-items-start mt-2">
+        <Summary repos={userRepos}/>
+        </div>
+      </div>
+
     </div>
   );
 }
