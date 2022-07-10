@@ -1,23 +1,36 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, CSSProperties } from "react";
 import Header from "./components/Header.js";
 import Lookup from "./components/Lookup.js";
 import Profile from "./components/Profile";
 import { axiosGitUser, axiosCache, axiosOpenAI } from "./config";
 import Summary from "./components/Summary.js";
+import ClipLoader from "react-spinners/ClipLoader";
 
 function App() {
-  const [userName, setUsername] = useState("");
-  const [userPhoto, setPhoto] = useState("");
-  const [photoTitle, setPhotoTitle] = useState("");
-  const [userStars, setStars] = useState(0);
-  const [userRepos, setRepos] = useState([])
+  let [userName, setUsername] = useState("");
+  let [userPhoto, setPhoto] = useState("");
+  let [photoTitle, setPhotoTitle] = useState("");
+  let [userStars, setStars] = useState(0);
+  let [userRepos, setRepos] = useState([])
+  let [loading, setLoading] = useState(false);
+  let [color, setColor] = useState("#0d6efd");
 
   const updateUserName = (e) => {
     setUsername(e.target.value.toLowerCase());
   };
 
+  const clearPage = () => {
+    setPhoto("")
+    setPhotoTitle("")
+    setStars(0)
+    setRepos([])
+    setLoading(true)
+
+  }
+
   const fetchData = async () => {
+    clearPage()
     if (!(await fetchCacheData())) {
       let data = [];
       let success = true;
@@ -55,6 +68,8 @@ function App() {
           }
         }
       }
+    } else {
+      setLoading(false)
     }
   };
 
@@ -102,15 +117,24 @@ function App() {
               userName={photoTitle}
               stars={userStars}
             />
-          ) : null}
+          ) : (
+          <div className="container">
+            <div className="d-flex justify-content-center">
+              <ClipLoader color={color} loading={loading} size={150} />
+            </div>
+          </div>
+          )
+        }
         </div>
         <div className="col-md-4">&nbsp;</div>
       </div>
+      {userPhoto ? (
       <div className="container">
         <div className="row align-items-start mt-2">
         <Summary repos={userRepos}/>
         </div>
       </div>
+      ) : null }
 
     </div>
   );
