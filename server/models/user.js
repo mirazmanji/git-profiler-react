@@ -1,17 +1,20 @@
 const { default: mongoose } = require("mongoose");
 
 const userSchema = new mongoose.Schema({
-    id : {
+    id: {
         type: Number,
     },
     handle: {
         type: String,
     },
     avatarURL: {
-        type: String
+        type: String,
     },
     stars: {
-        type: Number
+        type: Number,
+    },
+    repoReadMes: {
+        type: String,
     },
     cache: {
         type: Date,

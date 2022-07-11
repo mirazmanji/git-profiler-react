@@ -6,7 +6,7 @@ const Profile = ({stars, userPhoto, userName}) => {
     <div className="card">
         <img className="card-img-top" src={userPhoto} title={userName} />
         <div className="card-body">
-            <p className="card-text">Stars: {stars}</p>
+            {stars ? (<p className="card-text">Stars: {stars}</p>) : null}
             {stars ? <Stars numStars={stars} /> : null}
         </div>
     </div>

@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState, CSSProperties } from "react";
+import { useState } from "react";
 import Header from "./components/Header.js";
 import Lookup from "./components/Lookup.js";
 import Profile from "./components/Profile";
@@ -14,7 +14,7 @@ function App() {
   let [userStars, setStars] = useState(0);
   let [userRepos, setRepos] = useState([])
   let [loading, setLoading] = useState(false);
-  let [color, setColor] = useState("#0d6efd");
+  let color = "#0d6efd"
 
   const updateUserName = (e) => {
     setUsername(e.target.value.toLowerCase());
@@ -35,10 +35,12 @@ function App() {
       let data = [];
       let success = true;
       try {
-        data = await axiosGitUser.get(userName);
+        data = await axiosOpenAI.get(userName)
+        // data = await axiosGitUser.get(userName);
         setStars(data.data.stars);
         setPhoto(data.data.avatarURL);
         setPhotoTitle(data.data.handle);
+        setRepos(data.data.repoReadMes)
       } catch (err) {
         console.log({
           message: "Caught error on attempt to request new data",
@@ -54,6 +56,7 @@ function App() {
               stars: data.data.stars,
               avatarURL: data.data.avatarURL,
               handle: data.data.handle.toLowerCase(),
+              repoReadMes: data.data.repoReadMes,
             };
             const update = await axiosCache.post("/", createDocument);
             console.log({
@@ -68,20 +71,18 @@ function App() {
           }
         }
       }
-    } else {
-      setLoading(false)
-    }
+    } 
+    setLoading(false)
   };
 
   const fetchCacheData = async () => {
     try {
-      //const data = await axiosCache.get(userName);
-      const data = await axiosOpenAI.get(userName)
+      const data = await axiosCache.get(userName);
       if (data.status === 200) {
         setStars(data.data.stars);
         setPhoto(data.data.avatarURL);
         setPhotoTitle(data.data.handle);
-        setRepos(data.data.repoReadMes)
+        setRepos(JSON.parse(data.data.repoReadMes))
         console.log({
           message: "Data retrieved from cache",
           data: data,
@@ -99,7 +100,6 @@ function App() {
       return false;
     }
   };
-  const summaryArray = [{'summary': 'Hello'}, {'summary':'World'}]
   return (
     <div className="App">
       <Header />

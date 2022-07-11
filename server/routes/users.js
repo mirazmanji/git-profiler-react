@@ -25,11 +25,13 @@ router.post('/', async (req, res) => {
       id: req.body.id,
       handle: req.body.handle,
       stars: req.body.stars,
-      avatarURL: req.body.avatarURL
+      avatarURL: req.body.avatarURL,
+      repoReadMes: JSON.stringify(req.body.repoReadMes)
     })
     const newUser = await user.save()
     res.status(201).json(newUser)
   } catch(err) {
+    console.log(err.message)
     res.status(400).json({message: err.message})
   }  
 });
