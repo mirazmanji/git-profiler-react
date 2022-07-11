@@ -1,6 +1,6 @@
 # GIT PROFILER
 
-# Restfully query a user to get their profile picture and number of star gazers
+# Restfully query a user to get their profile picture, number of star gazers, and summarize the contents of their repos.
 #### Star gazers is defined as the aggregate number of stars a user has received on each of their repos.
 
 <br/>
@@ -8,6 +8,7 @@
 #### This project was built with React 18.2 using the latest functional components and hooks functionality.  
 * React Class Components are becoming obsolete which is why this was done in functional components with hooks. 
 * I could have used Redux to manage states but that's too much overhead for a lightweight app.
+#### READ.ME repo files are found, fetched, then analyzed with GPT3 AI
 #### The API server runs on express using a cloud MongoDB server for caching git users.
 * Access instructions to the MongoDB server are in the .env file.
 #### The styling was done with Bootstrap 5.
@@ -15,9 +16,7 @@
 <br/>
 
 ### TO DO: ###
-* Integrate with OS.AI to summarize repo content descriptions (GPT3)
 * Handle token authorization for express server requests
-* Add loading wheel to display during fetch
 * Configure AWS Load balancer with SSL certificate for HTTPS access
 
 Deployed to AWS at <s>http://3.145.22.53:3000/</s>
